@@ -9,18 +9,21 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QImage, QPixmap
+from PyQt5.QtWidgets import QGraphicsPixmapItem, QGraphicsScene
 
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
+        MainWindow.resize(1124, 597)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.graphicsView_2 = QtWidgets.QGraphicsView(self.centralwidget)
-        self.graphicsView_2.setMinimumSize(QtCore.QSize(0, 300))
+        self.graphicsView_2.setMinimumSize(QtCore.QSize(300, 300))
+        self.graphicsView_2.setMaximumSize(QtCore.QSize(300, 300))
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.gridLayout_2.addWidget(self.graphicsView_2, 0, 0, 1, 1)
         self.frame = QtWidgets.QFrame(self.centralwidget)
@@ -29,6 +32,8 @@ class Ui_MainWindow(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy)
+        self.frame.setMinimumSize(QtCore.QSize(300, 250))
+        self.frame.setMaximumSize(QtCore.QSize(300, 250))
         self.frame.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.frame.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
@@ -43,7 +48,7 @@ class Ui_MainWindow(object):
         self.pushButton_3.setMaximumSize(QtCore.QSize(50, 50))
         self.pushButton_3.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/png/方向箭头-右.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icon/方向箭头-右.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_3.setIcon(icon)
         self.pushButton_3.setObjectName("pushButton_3")
         self.gridLayout.addWidget(self.pushButton_3, 2, 4, 1, 1)
@@ -52,11 +57,16 @@ class Ui_MainWindow(object):
         spacerItem1 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem1, 0, 3, 1, 1)
         self.pushButton_4 = QtWidgets.QPushButton(self.frame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_4.sizePolicy().hasHeightForWidth())
+        self.pushButton_4.setSizePolicy(sizePolicy)
         self.pushButton_4.setMinimumSize(QtCore.QSize(50, 50))
         self.pushButton_4.setMaximumSize(QtCore.QSize(50, 50))
         self.pushButton_4.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/png/方向箭头-上.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/icon/方向箭头-上.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_4.setIcon(icon1)
         self.pushButton_4.setObjectName("pushButton_4")
         self.gridLayout.addWidget(self.pushButton_4, 1, 3, 1, 1)
@@ -67,7 +77,7 @@ class Ui_MainWindow(object):
         self.pushButton_2.setMaximumSize(QtCore.QSize(50, 50))
         self.pushButton_2.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/png/方向箭头-下.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/icon/方向箭头-下.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton_2.setIcon(icon2)
         self.pushButton_2.setObjectName("pushButton_2")
         self.gridLayout.addWidget(self.pushButton_2, 2, 3, 1, 1)
@@ -78,17 +88,18 @@ class Ui_MainWindow(object):
         self.pushButton.setMaximumSize(QtCore.QSize(50, 50))
         self.pushButton.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/png/方向箭头-左.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/icon/方向箭头-左.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.pushButton.setIcon(icon3)
         self.pushButton.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton, 2, 2, 1, 1)
         self.gridLayout_2.addWidget(self.frame, 2, 0, 1, 1)
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
+        self.graphicsView.setMinimumSize(QtCore.QSize(800, 0))
         self.graphicsView.setObjectName("graphicsView")
         self.gridLayout_2.addWidget(self.graphicsView, 0, 2, 4, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1124, 23))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -101,4 +112,8 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-import img_rc
+        self.pushButton_3.setShortcut(_translate("MainWindow", "Right"))
+        self.pushButton_4.setShortcut(_translate("MainWindow", "Up"))
+        self.pushButton_2.setShortcut(_translate("MainWindow", "Down"))
+        self.pushButton.setShortcut(_translate("MainWindow", "Left"))
+import img.img_rc
