@@ -11,6 +11,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
 
+
+
+
+
+
         frame = QImage("..\\img\\zhuxuan.jpg")
         pix = QPixmap.fromImage(frame)
         item = QGraphicsPixmapItem(pix)
