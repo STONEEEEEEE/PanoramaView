@@ -34,13 +34,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pushButton_3.clicked.connect(self.rightMove)
         self.pushButton_4.clicked.connect(self.upMove)
 
+        # 选定位置前方向键不可用
+        self.setPushbuttonEnable(False)
+
+    # 设置方向键激活状态
+    def setPushbuttonEnable(self, bool):
+        self.pushButton.setEnabled(bool)
+        self.pushButton_2.setEnabled(bool)
+        self.pushButton_3.setEnabled(bool)
+        self.pushButton_4.setEnabled(bool)
+
 
     def mousePressEvent(self, event):  # 鼠标按下事件
         pos = event.pos()  # 返回鼠标所在点QPoint
         self.statusBar.clearMessage()
         self.statusBar.showMessage('Mouse is pressed at (%d,%d) of widget ' % (pos.x(), pos.y()), 0)
         print('Mouse is pressed at (%d,%d) of screen ' % (pos.x(), pos.y()))
-        if 80 <= pos.x() <= 125 and 10 <= pos.y() <= 35:
+        if 80 <= pos.x() <= 125 and 20 <= pos.y() <= 35:
             self.pix = QPixmap("..\\data\\srcfile\\zhuxuan1.jpg")
             img_w = self.pix.width()
             img_h = self.pix.height()
@@ -54,6 +64,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage("当前位置：校区一号门")
             # 初始化图片位置
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
+            # 启动方向键控制
+            self.setPushbuttonEnable(True)
 
         elif 190 <= pos.x() <= 240 and 140 <= pos.y() <= 175:
             self.pix = QPixmap("..\\data\\srcfile\\zhuxuan2.jpg")
@@ -69,6 +81,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage("当前位置：中山图书馆")
             # 初始化图片位置
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
+            # 启动方向键控制
+            self.setPushbuttonEnable(True)
 
         elif 195 <= pos.x() <= 235 and 205 <= pos.y() <= 230:
             self.pix = QPixmap("..\\data\\srcfile\\zhuxuan3.jpg")
@@ -84,6 +98,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage("当前位置：静湖")
             # 初始化图片位置
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
+            # 启动方向键控制
+            self.setPushbuttonEnable(True)
 
         elif 250 <= pos.x() <= 290 and 360 <= pos.y() <= 390:
             self.pix = QPixmap("..\\data\\srcfile\\zhuxuan4.jpg")
@@ -99,6 +115,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.statusBar.showMessage("当前位置：操场山顶")
             # 初始化图片位置
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
+            # 启动方向键控制
+            self.setPushbuttonEnable(True)
 
 
     def horzPosChanged(self, pos):
@@ -111,22 +129,22 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def rightMove(self):
         if self.pos_horz + self.disp_w <= self.pix.width():
-            self.pos_horz = self.pos_horz + 10
+            self.pos_horz = self.pos_horz + 20
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
 
     def leftMove(self):
-        if self.pos_horz >= 10:
-            self.pos_horz = self.pos_horz - 10
+        if self.pos_horz >= 20:
+            self.pos_horz = self.pos_horz - 20
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
 
     def upMove(self):
-        if self.pos_vert >= 10:
-            self.pos_vert = self.pos_vert - 10
+        if self.pos_vert >= 20:
+            self.pos_vert = self.pos_vert - 20
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
 
     def downMove(self):
         if self.pos_vert + self.disp_h <= self.pix.height():
-            self.pos_vert = self.pos_vert + 10
+            self.pos_vert = self.pos_vert + 20
             self.label_2.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
 
 
