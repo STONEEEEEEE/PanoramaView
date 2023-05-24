@@ -5,6 +5,9 @@
     <file>方向箭头-右.png</file>
     <file>方向箭头-左.png</file>
   </qresource>
+  <qresource prefix="map">
+    <file>map.jpg</file>
+  </qresource>
   <qresource prefix="panorama">
     <file>zhuxuan.jpg</file>
   </qresource>
