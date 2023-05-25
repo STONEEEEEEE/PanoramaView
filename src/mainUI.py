@@ -15,9 +15,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
 
     def reInit(self):
-        # 设定全景框参数
-        self.disp_w = 757
-        self.disp_h = 552
+        # 设定全景框参数  手工设定，大小随pano_label改变
+        self.disp_w = 1157
+        self.disp_h = 857
         self.pos_horz = 0
         self.pos_vert = 0
 
@@ -43,7 +43,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pos_label.setText("当前位置不可选择")
         print('Mouse is pressed at (%d,%d) of screen ' % (pos.x(), pos.y()))
         if 80 <= pos.x() <= 125 and 20 <= pos.y() <= 35:
-            self.pix = QPixmap("..\\data\\srcfile\\zhuxuan1.jpg")
+            self.pix = QPixmap("../data/outfile/东北门外/东北门外.jpg")
             img_w = self.pix.width()
             img_h = self.pix.height()
             self.pano_label.setFixedSize(self.disp_w, self.disp_h)
@@ -53,14 +53,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.horizontalScrollBar.setFixedWidth(self.disp_w)
             self.horizontalScrollBar.valueChanged.connect(self.horzPosChanged)
             # 位置提示
-            self.pos_label.setText("当前位置：校区一号门")
+            self.pos_label.setText("当前位置：校区东北门")
             # 初始化图片位置
             self.pano_label.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
             # 启动方向键控制
             self.setPushbuttonEnable(True)
-
         elif 190 <= pos.x() <= 240 and 140 <= pos.y() <= 175:
-            self.pix = QPixmap("..\\data\\srcfile\\zhuxuan2.jpg")
+            self.pix = QPixmap("../data/outfile/中山图书馆/中山图书馆.jpg")
             img_w = self.pix.width()
             img_h = self.pix.height()
             self.pano_label.setFixedSize(self.disp_w, self.disp_h)
@@ -75,9 +74,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.pano_label.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
             # 启动方向键控制
             self.setPushbuttonEnable(True)
-
         elif 195 <= pos.x() <= 235 and 205 <= pos.y() <= 230:
-            self.pix = QPixmap("..\\data\\srcfile\\zhuxuan3.jpg")
+            self.pix = QPixmap("../data/outfile/静湖/静湖1.jpg")
             img_w = self.pix.width()
             img_h = self.pix.height()
             self.pano_label.setFixedSize(self.disp_w, self.disp_h)
@@ -92,9 +90,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.pano_label.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
             # 启动方向键控制
             self.setPushbuttonEnable(True)
-
-        elif 250 <= pos.x() <= 290 and 360 <= pos.y() <= 390:
-            self.pix = QPixmap("..\\data\\srcfile\\zhuxuan4.jpg")
+        elif 210 <= pos.x() <= 250 and 320 <= pos.y() <= 350:
+            self.pix = QPixmap("../data/outfile/休闲健身步道/休闲健身步道1.jpg")
             img_w = self.pix.width()
             img_h = self.pix.height()
             self.pano_label.setFixedSize(self.disp_w, self.disp_h)
@@ -104,7 +101,39 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.horizontalScrollBar.setFixedWidth(self.disp_w)
             self.horizontalScrollBar.valueChanged.connect(self.horzPosChanged)
             # 位置提示
-            self.pos_label.setText("当前位置：操场山顶")
+            self.pos_label.setText("当前位置：休闲健身步道")
+            # 初始化图片位置
+            self.pano_label.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
+            # 启动方向键控制
+            self.setPushbuttonEnable(True)
+        elif 285 <= pos.x() <= 315 and 140 <= pos.y() <= 170:
+            self.pix = QPixmap("../data/outfile/竹轩b/竹轩b-1.jpg")
+            img_w = self.pix.width()
+            img_h = self.pix.height()
+            self.pano_label.setFixedSize(self.disp_w, self.disp_h)
+            self.verticalScrollBar.setRange(0, img_h - self.disp_h)
+            self.verticalScrollBar.valueChanged.connect(self.vertPosChanged)
+            self.horizontalScrollBar.setRange(0, img_w - self.disp_w)
+            self.horizontalScrollBar.setFixedWidth(self.disp_w)
+            self.horizontalScrollBar.valueChanged.connect(self.horzPosChanged)
+            # 位置提示
+            self.pos_label.setText("当前位置：竹轩")
+            # 初始化图片位置
+            self.pano_label.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
+            # 启动方向键控制
+            self.setPushbuttonEnable(True)
+        elif 320 <= pos.x() <= 345 and 315 <= pos.y() <= 340:
+            self.pix = QPixmap("../data/outfile/操场/操场1.jpg")
+            img_w = self.pix.width()
+            img_h = self.pix.height()
+            self.pano_label.setFixedSize(self.disp_w, self.disp_h)
+            self.verticalScrollBar.setRange(0, img_h - self.disp_h)
+            self.verticalScrollBar.valueChanged.connect(self.vertPosChanged)
+            self.horizontalScrollBar.setRange(0, img_w - self.disp_w)
+            self.horizontalScrollBar.setFixedWidth(self.disp_w)
+            self.horizontalScrollBar.valueChanged.connect(self.horzPosChanged)
+            # 位置提示
+            self.pos_label.setText("当前位置：操场")
             # 初始化图片位置
             self.pano_label.setPixmap(self.pix.copy(self.pos_horz, self.pos_vert, self.disp_w, self.disp_h))
             # 启动方向键控制
