@@ -2,14 +2,9 @@ from pylab import *
 from numpy import *
 from PIL import Image
 
-# If you have PCV installed, these imports should work
 from PCV.geometry import homography, warp
 from PCV.localdescriptors import sift
-import os
 
-"""
-This is the panorama example from section 3.3.
-"""
 
 tempPath = ['竹轩b', '操场', '东北门外', '东北门内', '静湖', '静湖水体广场', '体育馆', '丸美学生活动中心', '休闲健身步道', '中山图书馆']
 numA = 9
@@ -18,7 +13,7 @@ numB = 1
 featname = ['..\\data\\sift\\'+ tempPath[numA] + '\\' + str(numB) + '-' + str(i+1)+'.sift' for i in range(5)]
 imname = ['..\\data\\srcfile\\'+ tempPath[numA] + '\\' + str(numB) + '-' + str(i+1)+'.jpg' for i in range(5)]
 
-# extract features and match
+# 特征点提取.sift
 l = {}
 d = {}
 for i in range(5):
@@ -29,7 +24,6 @@ matches = {}
 for i in range(4):
     matches[i] = sift.match(d[i+1],d[i])
 
-# visualize the matches (Figure 3-11 in the book)
 for i in range(4):
     im1 = array(Image.open(imname[i]))
     im2 = array(Image.open(imname[i+1]))
@@ -40,20 +34,19 @@ for i in range(4):
 
 
 
-# function to convert the matches to hom. points
 def convert_points(j):
     ndx = matches[j].nonzero()[0]
     fp = homography.make_homog(l[j+1][ndx,:2].T)
     ndx2 = [int(matches[j][i]) for i in ndx]
     tp = homography.make_homog(l[j][ndx2,:2].T)
 
-    # switch x and y - TODO this should move elsewhere
+
     fp = vstack([fp[1],fp[0],fp[2]])
     tp = vstack([tp[1],tp[0],tp[2]])
     return fp,tp
 
 
-# estimate the homographies
+# 单应性矩阵
 model = homography.RansacModel()
 
 fp,tp = convert_points(1)
@@ -62,15 +55,15 @@ H_12 = homography.H_from_ransac(fp,tp,model)[0] #im 1 to 2
 fp,tp = convert_points(0)
 H_01 = homography.H_from_ransac(fp,tp,model)[0] #im 0 to 1
 
-tp,fp = convert_points(2) #NB: reverse order
+tp,fp = convert_points(2)
 H_32 = homography.H_from_ransac(fp,tp,model)[0] #im 3 to 2
 
-tp,fp = convert_points(3) #NB: reverse order
+tp,fp = convert_points(3)
 H_43 = homography.H_from_ransac(fp,tp,model)[0] #im 4 to 3
 
 
-# warp the images
-delta = 2000 # for padding and translation
+# 图像拼接
+delta = 2000
 
 im1 = array(Image.open(imname[1]), "uint8")
 im2 = array(Image.open(imname[2]), "uint8")
