@@ -43,7 +43,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.pos_label.setText("当前位置不可选择")
         print('Mouse is pressed at (%d,%d) of screen ' % (pos.x(), pos.y()))
         if 80 <= pos.x() <= 125 and 20 <= pos.y() <= 35:
-            self.pix = QPixmap("../data/outfile/东北门外/东北门外.jpg")
+            self.pix = QPixmap("../data/outfile/东北门外/东北门外1.jpg")
             img_w = self.pix.width()
             img_h = self.pix.height()
             self.pano_label.setFixedSize(self.disp_w, self.disp_h)

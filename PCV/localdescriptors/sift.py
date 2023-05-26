@@ -112,6 +112,9 @@ def plot_matches(im1,im2,locs1,locs2,matchscores,show_below=True):
             plot([locs1[i][0],locs2[m][0]+cols1],[locs1[i][1],locs2[m][1]],'c')
     axis('off')
 
+    # 添加返回比较图片
+    return im3
+
 
 def match_twosided(desc1,desc2):
     """ Two-sided symmetric version of match(). """
